@@ -2,7 +2,11 @@
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="(img, index) in imgList" :key="img.id">
-        <img :src="img.imgUrl" :class="{active:}" />
+        <img
+          :src="img.imgUrl"
+          :class="{ active: index === defaultIndex }"
+          @click="changeDefaultIndex(index)"
+        />
       </div>
     </div>
     <div class="swiper-button-next"></div>
@@ -16,6 +20,16 @@ import "swiper/css/swiper.css";
 export default {
   name: "ImageList",
   props: ["imgList"],
+  data() {
+    return {
+      defaultIndex: 0, //默认有橙色框框的
+    };
+  },
+  methods: {
+    changeDefaultIndex(index) {
+      this.defaultIndex = index;
+    },
+  },
 };
 </script>
 
